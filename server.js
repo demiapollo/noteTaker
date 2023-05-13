@@ -29,6 +29,7 @@ app.post("/api/notes", (req, res) => {
     if (err) throw err;
     const notes = JSON.parse(data);
     const newNote = req.body;
+    newNote.id = notes.length;
     notes.push(newNote);
     fs.writeFile("./db/db.json", JSON.stringify(notes), (err) => {
       res.json(newNote);
